@@ -12,24 +12,25 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        List<String> symbols = loadSymbols("./data/symbollist.txt");
-        String str = loadFile("./data/sample.txt");
+        List<String> symbols = loadSymbols("./data/symbollist-miyabi.txt");
+        String str = loadFile("./data/sangetsuki.txt");
         String c;
-
+        int width = 21;
+        int count = 0;
         for (int i = 0; i < str.length(); i++) {
             c = String.valueOf(str.charAt(i));
             if (symbols.contains(c)) {
-                System.out.print(c);
+                System.out.print((++count - 1) % width == 0 ? "\n" : c);
             }
         }
-        
+
     }
-    
+
     private static String loadFile(String filePath) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(new File(filePath)));
         String str;
         StringBuilder sb = new StringBuilder();
-        while((str = br.readLine()) != null){
+        while ((str = br.readLine()) != null) {
             sb.append(str);
         }
         br.close();
@@ -46,5 +47,5 @@ public class Main {
         br.close();
         return list;
     }
-    
+
 }
